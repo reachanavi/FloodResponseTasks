@@ -1,8 +1,14 @@
+<!-- 
+Anavi Nayak
+SEES Flood Response
+Leaflet Map Task
+-->
 <!doctype html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Anavi's Practice Website</title>
+        <title>Leaflet Map Application</title>
+        <!--linking Leaflet stylesheet and javascript: -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
               integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
               crossorigin=""/>
@@ -18,7 +24,9 @@
     <body>
 
         <div id="mapid"></div>
+        
         <script>
+            //creating map with tile layer:
             var mymap = L.map('mapid').setView([30.274633, -97.740316], 14);
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -27,10 +35,10 @@
                 accessToken: 'pk.eyJ1IjoiaXZhbmE5NyIsImEiOiJjajNobm5xZGkwMGZ3MzJxc3VkZ2E1MHJvIn0.T-pV2zLjJC4_CoUq3OHT8w'
             }).addTo(mymap);
 
-            //marker
+            //creating a marker
             var marker = L.marker([30.274633, -97.740316]).addTo(mymap);
 
-            //circle
+            //making a circle with specific colors and radius
             var circle = L.circle([30.284407, -97.733739], {
                 color: 'green',
                 fillColor: '#77e54b',
@@ -40,7 +48,7 @@
 
 
 
-            //polygon
+            //making a polygon
             var polygon = L.polygon([
                 [30.266910, -97.760886],
                 [30.261253, -97.771025],
@@ -52,15 +60,17 @@
                 fillOpacity: 0.3
             }).addTo(mymap);
 
+            //Making popups when the user clicks on marker, circle, or polygon
             marker.bindPopup("<b>Capitol Building</b><br>Austin, Texas.")
             circle.bindPopup("University of Texas");
             polygon.bindPopup("Zilker Park").openPopup();
-
+            //Making a whole foods popup when the map loads
             var popup = L.popup()
                 .setLatLng([30.270422, -97.753148])
                 .setContent("Whole Foods")
                 .openOn(mymap);
 
+            //moving the Whole Foods popup to wherever the use clicks
             function onMapClick(e) {
                 popup
                     .setLatLng(e.latlng)
