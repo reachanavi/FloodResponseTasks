@@ -1,46 +1,12 @@
+<!--
+Anavi Nayak
+SEES Flood Response
+Vue Component Task
+-->
+
 <script src="https://unpkg.com/vue"></script>
 
-<div id="app-1">
-    <p>{{ message }}</p>
-</div>
-
-
-<div id="app-2">
-  <span v-bind:title="message">
-    Hover your mouse over me to see the date!
-  </span>
-</div>
-
-<br>
-
-<div id="app-3">
-    <span v-if="seen">This sentence depends on a conditional</span>
-</div>
-
-<br>
-<h4>
-    Vue To Do List:
-</h4>
-<div id="app-4">
-    <ol>
-        <li v-for="todo in todos">
-            {{ todo.text }}
-        </li>
-    </ol>
-</div>
-
-<div id="app-5">
-    <p>{{ message }}</p>
-    <button v-on:click="reverseMessage">Reverse Message Above</button>
-</div>
-
-<br>
-
-<div id="app-6">
-    <p>{{ message }}</p>
-    <input v-model="message">
-</div>
-<br>
+<!-- Using a vue component to make a SEES to-do list-->
 <h3>
     SEES To Do List
 </h3>
@@ -61,58 +27,61 @@
 </div>
 
 
+
+<!--Other exercises:-->
+<!--displaying a message-->
+<div id="app-1">
+    <p>{{ message }}</p>
+</div>
+
+<!--message your mouse can hover over-->
+<div id="app-2">
+  <span v-bind:title="message">
+    Hover your mouse over me to see the date!
+  </span>
+</div>
+
+<br>
+
+<!--displays the message if "seen" is true-->
+<div id="app-3">
+    <span v-if="seen">This sentence depends on a conditional</span>
+</div>
+
+<!--creates a to-do list-->
+<br>
+<h4>
+    Vue To Do List:
+</h4>
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+
+<!--reverses a message when a button is clicked-->
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message Above</button>
+</div>
+
+<br>
+
+<!--changes the message to whatever is typed-->
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+<br>
+
+
+
+<!--Javascript:-->
+
 <script>
-    var app1 = new Vue({
-      el: '#app-1',
-      data: {
-        message: 'Hello Vue.js!'
-      }
-    })
-
-    var app2 = new Vue({
-      el: '#app-2',
-      data: {
-        message: 'You loaded this page on ' + new Date().toLocaleString()
-      }
-    })
-
-    var app3 = new Vue({
-      el: '#app-3',
-      data: {
-        seen: true
-      }
-    })
-
-    var app4 = new Vue({
-      el: '#app-4',
-      data: {
-        todos: [
-          { text: 'Learn JavaScript' },
-          { text: 'Learn Vue' },
-          { text: 'Build something awesome' }
-        ]
-      }
-    })
-
-    var app5 = new Vue({
-      el: '#app-5',
-      data: {
-        message: 'Hello Vue.js!'
-      },
-      methods: {
-        reverseMessage: function () {
-          this.message = this.message.split('').reverse().join('')
-        }
-      }
-    })
-
-    var app6 = new Vue({
-      el: '#app-6',
-      data: {
-        message: 'Edit the text in the box to change the message.'
-      }
-    })
-
+    //making a component that has a SEES to-do list
     Vue.component('todolist-item', {
       props: ['todolist'],
       template: '<li>{{ todolist.text }}</li>'
@@ -126,6 +95,64 @@
           { id: 1, text: 'Task 2: Coding' },
           { id: 2, text: 'Task 3: Flood Response' }
         ]
+      }
+    })
+    
+    //Other exercises:
+    //displaying a message
+    var app1 = new Vue({
+      el: '#app-1',
+      data: {
+        message: 'Hello Vue.js!'
+      }
+    })
+    
+    //message your mouse can hover over
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        message: 'You loaded this page on ' + new Date().toLocaleString()
+      }
+    })
+    
+    //making the value of "seen" true
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        seen: true
+      }
+    })
+    
+    //Making a to-do list
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        todos: [
+          { text: 'Learn JavaScript' },
+          { text: 'Learn Vue' },
+          { text: 'Build something awesome' }
+        ]
+      }
+    })
+
+    //Writing a function to reverse a message
+    var app5 = new Vue({
+      el: '#app-5',
+      data: {
+        message: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+
+    //Containing a message the user can edit to change the message
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: 'Edit the text in the box to change the message.'
       }
     })
 </script>
