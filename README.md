@@ -1,4 +1,4 @@
 # FloodResponseTasks
 Files in the repository include:
-A simple Vue component
-A leaflet map application
+a simple Vue component and 
+a leaflet map application
