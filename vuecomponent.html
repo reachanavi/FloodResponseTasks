@@ -1,0 +1,131 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app-1">
+    <p>{{ message }}</p>
+</div>
+
+
+<div id="app-2">
+  <span v-bind:title="message">
+    Hover your mouse over me to see the date!
+  </span>
+</div>
+
+<br>
+
+<div id="app-3">
+    <span v-if="seen">This sentence depends on a conditional</span>
+</div>
+
+<br>
+<h4>
+    Vue To Do List:
+</h4>
+<div id="app-4">
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+
+<div id="app-5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message Above</button>
+</div>
+
+<br>
+
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+<br>
+<h3>
+    SEES To Do List
+</h3>
+<div id="app-7">
+    <ol>
+        <!--
+          Now we provide each todo-item with the todo object
+          it's representing, so that its content can be dynamic.
+          We also need to provide each component with a "key",
+          which will be explained later.
+        -->
+        <todolist-item
+                v-for="item in seesList"
+                v-bind:todolist="item"
+                v-bind:key="item.id"
+        ></todolist-item>
+    </ol>
+</div>
+
+
+<script>
+    var app1 = new Vue({
+      el: '#app-1',
+      data: {
+        message: 'Hello Vue.js!'
+      }
+    })
+
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        message: 'You loaded this page on ' + new Date().toLocaleString()
+      }
+    })
+
+    var app3 = new Vue({
+      el: '#app-3',
+      data: {
+        seen: true
+      }
+    })
+
+    var app4 = new Vue({
+      el: '#app-4',
+      data: {
+        todos: [
+          { text: 'Learn JavaScript' },
+          { text: 'Learn Vue' },
+          { text: 'Build something awesome' }
+        ]
+      }
+    })
+
+    var app5 = new Vue({
+      el: '#app-5',
+      data: {
+        message: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function () {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+
+    var app6 = new Vue({
+      el: '#app-6',
+      data: {
+        message: 'Edit the text in the box to change the message.'
+      }
+    })
+
+    Vue.component('todolist-item', {
+      props: ['todolist'],
+      template: '<li>{{ todolist.text }}</li>'
+    })
+
+    var app7 = new Vue({
+      el: '#app-7',
+      data: {
+        seesList: [
+          { id: 0, text: 'Task 1: Earth Science' },
+          { id: 1, text: 'Task 2: Coding' },
+          { id: 2, text: 'Task 3: Flood Response' }
+        ]
+      }
+    })
+</script>
