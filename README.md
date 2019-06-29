@@ -1,4 +1,4 @@
 # FloodResponseTasks
-Completed SEES tasks in the repository include:
-a simple Vue component and 
-a leaflet map application
+Anavi Nayak
+SEES Flood Response Assignments
+Completed the 5 Flood Response tasks involving VueJS, and mapping with Leaflet and ArcGIS.
